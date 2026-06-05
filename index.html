@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1D9E75">
+<title>Comunicatore CAA — App gratuita per ragazzi autistici</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0faf5;color:#1a1a1a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#fff;border-radius:24px;padding:36px 28px;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,0.10);text-align:center}
+.icon{font-size:72px;margin-bottom:16px;line-height:1}
+h1{font-size:24px;font-weight:800;color:#0F6E56;margin-bottom:8px;line-height:1.2}
+.sub{font-size:15px;color:#555;margin-bottom:24px;line-height:1.6}
+.features{background:#f0faf5;border-radius:14px;padding:16px 20px;margin-bottom:28px;text-align:left}
+.feat{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:14px;color:#333;border-bottom:1px solid #e0f0e8}
+.feat:last-child{border-bottom:none}
+.feat span:first-child{font-size:20px;flex-shrink:0;margin-top:1px}
+.btn-install{display:block;background:#1D9E75;color:#fff;text-decoration:none;border-radius:14px;padding:16px 24px;font-size:17px;font-weight:800;margin-bottom:12px;transition:background .15s}
+.btn-install:active{background:#0F6E56}
+.note{font-size:12px;color:#888;line-height:1.5;margin-bottom:20px}
+.divider{height:1px;background:#eee;margin:20px 0}
+.how{text-align:left}
+.how h2{font-size:14px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:#444;line-height:1.5}
+.step-n{background:#1D9E75;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px}
+.os-toggle{display:flex;gap:8px;margin-bottom:16px}
+.os-btn{flex:1;padding:8px;border-radius:8px;border:2px solid #e0e0de;background:#fff;font-size:13px;font-weight:700;cursor:pointer;color:#666}
+.os-btn.on{border-color:#1D9E75;background:#e1f5ee;color:#0F6E56}
+.ios-steps,.android-steps{display:none}
+.ios-steps.show,.android-steps.show{display:block}
+.free-badge{display:inline-block;background:#e1f5ee;color:#0F6E56;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;margin-bottom:20px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon">💬</div>
+  <h1>Comunicatore CAA</h1>
+  <p class="sub">App gratuita di comunicazione aumentativa per ragazzi con autismo o difficoltà nel linguaggio</p>
+  <span class="free-badge">✅ Gratuita • Nessun account • Funziona offline</span>
+
+  <div class="features">
+    <div class="feat"><span>🖼️</span><span>Schede con immagini personalizzabili — carica le foto di casa</span></div>
+    <div class="feat"><span>🔊</span><span>Voce italiana — registra la tua voce per ogni scheda</span></div>
+    <div class="feat"><span>📁</span><span>Categorie libere — bisogni, emozioni, cibo, persone...</span></div>
+    <div class="feat"><span>🔒</span><span>Modalità modifica protetta da PIN — solo i genitori</span></div>
+    <div class="feat"><span>📱</span><span>Funziona su iPad e Android come app vera</span></div>
+  </div>
+
+  <a class="btn-install" href="comunicatore_caa.html">
+    📲 Apri l'app
+  </a>
+  <p class="note">Dopo averla aperta, aggiungila alla schermata home del tablet per usarla come un'app vera — vedi le istruzioni qui sotto</p>
+
+  <div class="divider"></div>
+
+  <div class="how">
+    <h2>Come installarla</h2>
+    <div class="os-toggle">
+      <button class="os-btn" id="btnIos" onclick="showOs('ios')">🍎 iPad / iPhone</button>
+      <button class="os-btn on" id="btnAnd" onclick="showOs('android')">🤖 Android</button>
+    </div>
+
+    <div class="android-steps show" id="android-steps">
+      <div class="step"><div class="step-n">1</div><span>Tocca il pulsante <b>"Apri l'app"</b> qui sopra</span></div>
+      <div class="step"><div class="step-n">2</div><span>In Chrome tocca i <b>tre puntini ⋮</b> in alto a destra</span></div>
+      <div class="step"><div class="step-n">3</div><span>Tocca <b>"Aggiungi a schermata Home"</b> o <b>"Installa app"</b></span></div>
+      <div class="step"><div class="step-n">4</div><span>Apri l'icona 💬 dalla schermata home — si apre a schermo intero!</span></div>
+    </div>
+
+    <div class="ios-steps" id="ios-steps">
+      <div class="step"><div class="step-n">1</div><span>Apri questa pagina in <b>Safari</b> (non Chrome)</span></div>
+      <div class="step"><div class="step-n">2</div><span>Tocca il pulsante <b>"Apri l'app"</b> qui sopra</span></div>
+      <div class="step"><div class="step-n">3</div><span>Tocca il tasto <b>Condividi</b> (quadrato con freccia ↑) in basso</span></div>
+      <div class="step"><div class="step-n">4</div><span>Scorri e tocca <b>"Aggiungi a schermata Home"</b></span></div>
+      <div class="step"><div class="step-n">5</div><span>Apri l'icona 💬 — si apre come app a schermo intero!</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showOs(os){
+  document.getElementById("ios-steps").className="ios-steps"+(os==="ios"?" show":"");
+  document.getElementById("android-steps").className="android-steps"+(os==="android"?" show":"");
+  document.getElementById("btnIos").className="os-btn"+(os==="ios"?" on":"");
+  document.getElementById("btnAnd").className="os-btn"+(os==="android"?" on":"");
+}
+</script>
+</body>
+</html>

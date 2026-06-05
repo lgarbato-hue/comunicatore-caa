@@ -1,0 +1,17 @@
+{
+  "name": "Comunicatore CAA",
+  "short_name": "Comunicatore",
+  "description": "App di comunicazione aumentativa alternativa",
+  "start_url": "/comunicatore-caa/comunicatore_caa.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f0f0ee",
+  "theme_color": "#1D9E75",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231D9E75'/><text y='.9em' font-size='80' x='10'>💬</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

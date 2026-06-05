@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1D9E75">
+<link rel="manifest" href="manifest.json">
 <title>Comunicatore CAA</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -556,6 +557,18 @@ load();
 curCat=D.cats[0]?D.cats[0].id:null;
 renderCats();
 renderCards();
+</script>
+<script>
+// blocco uscita accidentale
+history.pushState(null,null,location.href);
+window.onpopstate=function(){history.pushState(null,null,location.href);};
+// wakelock: impedisce che lo schermo si spenga
+if("wakeLock" in navigator){navigator.wakeLock.request("screen").catch(function(){});}
+document.addEventListener("visibilitychange",function(){
+  if(document.visibilityState==="visible"</body></body>"wakeLock" in navigator){
+    navigator.wakeLock.request("screen").catch(function(){});
+  }
+});
 </script>
 </body>
 </html>

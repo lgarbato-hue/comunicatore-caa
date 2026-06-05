@@ -277,7 +277,7 @@ function renderHome(){
   var h="";
   cs.forEach(function(cat,i){
     var cc=COLORS[i%COLORS.length];
-    h+='<div class="catTile '+cc+'" onclick="openCat(\''+cat.id+\')">'
+    h+='<div class="catTile '+cc+'" onclick="openCat(''+cat.id+'')">'
       +'<span class="te">'+cat.e+'</span>'
       +'<span class="tl">'+esc(cat.name)+'</span>'
       +'</div>';

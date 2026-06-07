@@ -20,12 +20,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0ee;
 
 #actions{display:flex;gap:8px;padding:10px;background:#fff;border-bottom:2px solid #ddd;flex-shrink:0}
 #btnSpeak{flex:1;background:#1D9E75;color:#fff;border:none;border-radius:12px;padding:15px;font-size:19px;font-weight:800;cursor:pointer}
+#btnSpeak:active{background:#0F6E56}
 #btnClear{background:#f0f0ee;border:2px solid #ddd;border-radius:12px;padding:15px 18px;font-size:20px;cursor:pointer}
 #btnEdit{background:#f0f0ee;border:2px solid #ddd;border-radius:12px;padding:15px;font-size:20px;cursor:pointer}
 
 #main{flex:1;overflow-y:auto;padding:12px}
 
-/* HOME */
 #catGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .catTile{border-radius:20px;padding:22px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;min-height:130px;border:3px solid transparent}
 .catTile:active{opacity:0.7;transform:scale(0.93)}
@@ -42,10 +42,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0ee;
 .c8{background:#F1F8E9;border-color:#9CCC65;color:#33691E}
 .c9{background:#EDE7F6;border-color:#7E57C2;color:#311B92}
 
-/* CARDS VIEW */
 #cardsView{display:none}
-#backBtn{width:100%;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #ddd;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:12px}
-#catLabel{font-size:18px;font-weight:800;margin-bottom:12px}
+/* TASTO INDIETRO GRANDE E VERDE */
+.bigBack{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:#1D9E75;border:none;border-radius:16px;padding:18px;font-size:22px;font-weight:800;cursor:pointer;margin-bottom:16px;color:#fff;box-shadow:0 3px 10px rgba(29,158,117,0.3)}
+.bigBack:active{background:#0F6E56;transform:scale(0.97)}
+#catLabel{font-size:22px;font-weight:800;margin-bottom:14px;padding:0 2px}
 #cardGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .card{background:#fff;border:3px solid #ddd;border-radius:18px;padding:16px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;min-height:125px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
 .card:active{transform:scale(0.88);border-color:#1D9E75}
@@ -53,26 +54,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0ee;
 .card img{width:68px;height:68px;object-fit:cover;border-radius:10px}
 .card .cl{font-size:13px;font-weight:700;text-align:center;line-height:1.3;color:#222}
 
-/* EDIT */
 #editScreen{display:none;flex-direction:column;height:100vh;overflow:hidden;background:#f0f0ee;position:fixed;inset:0;z-index:100}
 #editScreen.show{display:flex}
 #eHeader{background:#fff;border-bottom:2px solid #ddd;padding:13px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0}
 #eHeader h1{flex:1;font-size:16px;font-weight:800}
-.eback{background:#e1f5ee;color:#0F6E56;border:none;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer}
+.eback{background:#1D9E75;color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:16px;font-weight:800;cursor:pointer}
 #eBody{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px}
 .esec{background:#fff;border-radius:14px;border:1px solid #ddd;overflow:hidden}
 .esec-hd{padding:9px 13px;background:#f8f8f6;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #ddd}
 .erow{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:1px solid #f0f0ee}
 .erow:last-child{border-bottom:none}
-.dh{color:#ccc;font-size:17px;flex-shrink:0}
 .erow input{flex:1;border:1px solid #ddd;border-radius:6px;padding:7px 9px;font-size:14px;font-family:inherit;background:#f8f8f8}
 .bdel{background:none;border:none;font-size:17px;cursor:pointer;color:#E24B4A;padding:3px}
-.badd{width:100%;padding:12px;background:#e1f5ee;color:#0F6E56;border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
-.cblock{background:#fff;border-radius:14px;border:1px solid #ddd;overflow:hidden;margin-bottom:0}
+.badd{width:100%;padding:14px;background:#1D9E75;color:#fff;border:none;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
+.badd:active{background:#0F6E56}
+.cblock{background:#fff;border-radius:14px;border:1px solid #ddd;overflow:hidden}
 .cblock-hd{padding:9px 13px;background:#e1f5ee;font-weight:700;font-size:13px;color:#0F6E56;border-bottom:1px solid #b8ddd0;display:flex;justify-content:space-between;align-items:center}
 .crow{display:flex;align-items:center;gap:7px;padding:9px 11px;border-bottom:1px solid #f0f0ee}
 .crow:last-child{border-bottom:none}
-.cthumb{width:40px;height:40px;border-radius:7px;background:#f0f0ee;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden;cursor:pointer}
+.cthumb{width:44px;height:44px;border-radius:8px;background:#f0f0ee;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;cursor:pointer}
 .cthumb img{width:100%;height:100%;object-fit:cover}
 .cfields{flex:1;display:flex;flex-direction:column;gap:4px}
 .cfields input{border:1px solid #ddd;border-radius:5px;padding:5px 8px;font-size:13px;font-family:inherit;background:#f8f8f8;width:100%}
@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0ee;
 <div id="main">
   <div id="catGrid"></div>
   <div id="cardsView">
-    <button id="backBtn" onclick="goHome()">← Categorie</button>
+    <button class="bigBack" onclick="goHome()">← TORNA ALLE CATEGORIE</button>
     <div id="catLabel"></div>
     <div id="cardGrid"></div>
   </div>
@@ -120,7 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0ee;
 
 <div id="editScreen">
   <div id="eHeader">
-    <button class="eback" onclick="goUse()">← Usa</button>
+    <button class="eback" onclick="goUse()">← Torna all'app</button>
     <h1>⚙️ Modifica</h1>
     <button onclick="showPinChange()" style="border:1px solid #ddd;border-radius:7px;padding:6px 10px;font-size:12px;background:#f8f8f8;cursor:pointer">🔑 PIN</button>
   </div>
@@ -221,15 +221,13 @@ var DEF = {
 var D, sentence=[], pinBuf="", pinMode="unlock", curCat=null;
 
 function load(){
-  try{ var s=localStorage.getItem("caa4"); if(s){ D=JSON.parse(s); return; } }catch(e){}
+  try{ var s=localStorage.getItem("caa5"); if(s){ D=JSON.parse(s); return; } }catch(e){}
   D=JSON.parse(JSON.stringify(DEF));
 }
-function save(){ try{ localStorage.setItem("caa4",JSON.stringify(D)); }catch(e){} }
-
+function save(){ try{ localStorage.setItem("caa5",JSON.stringify(D)); }catch(e){} }
 function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function toast(m){ var t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(window._tt); window._tt=setTimeout(function(){ t.classList.remove("show"); },2200); }
 
-// HOME
 function renderHome(){
   document.getElementById("catGrid").style.display="grid";
   document.getElementById("cardsView").style.display="none";
@@ -264,14 +262,10 @@ function goHome(){
 function renderCards(){
   var cards = D.cards.filter(function(c){ return c.c===curCat; }).sort(function(a,b){ return a.o-b.o; });
   var html = "";
-  if(!cards.length){
-    html = '<div style="grid-column:1/-1;text-align:center;color:#aaa;padding:30px;font-size:14px">Nessuna scheda.<br>Aggiungile dal menu ⚙️</div>';
-  } else {
-    for(var i=0; i<cards.length; i++){
-      var card = cards[i];
-      var thumb = card.img ? '<img src="' + card.img + '">' : '<span class="ce">' + card.e + '</span>';
-      html += '<div class="card" onclick="tapCard(\'' + card.id + '\')">' + thumb + '<span class="cl">' + esc(card.l) + '</span></div>';
-    }
+  for(var i=0; i<cards.length; i++){
+    var card = cards[i];
+    var thumb = card.img ? '<img src="' + card.img + '">' : '<span class="ce">' + card.e + '</span>';
+    html += '<div class="card" onclick="tapCard(\'' + card.id + '\')">' + thumb + '<span class="cl">' + esc(card.l) + '</span></div>';
   }
   document.getElementById("cardGrid").innerHTML = html;
 }
@@ -285,7 +279,6 @@ function tapCard(id){
   else { tts(card.l, null); }
 }
 
-// BAR
 function renderBar(){
   var bar = document.getElementById("bar");
   var ph = document.getElementById("ph");
@@ -318,16 +311,40 @@ function speakAll(){
   next();
 }
 
+var itVoice = null;
+function pickItalianVoice(){
+  if(!window.speechSynthesis) return;
+  var voices = window.speechSynthesis.getVoices();
+  for(var i=0;i<voices.length;i++){
+    if(voices[i].lang && voices[i].lang.toLowerCase().indexOf("it")===0){ itVoice = voices[i]; break; }
+  }
+}
+if(window.speechSynthesis){
+  pickItalianVoice();
+  window.speechSynthesis.onvoiceschanged = pickItalianVoice;
+}
 function tts(text, cb){
   if(!window.speechSynthesis){ if(cb) cb(); return; }
   window.speechSynthesis.cancel();
   var u = new SpeechSynthesisUtterance(text);
-  u.lang="it-IT"; u.rate=0.85;
+  u.lang="it-IT"; u.rate=0.9;
+  if(itVoice) u.voice = itVoice;
   if(cb) u.onend=cb;
   window.speechSynthesis.speak(u);
 }
+// "scalda" il motore vocale al primo tocco, elimina il ritardo iniziale
+var ttsWarmed = false;
+function warmTTS(){
+  if(ttsWarmed || !window.speechSynthesis) return;
+  ttsWarmed = true;
+  var u = new SpeechSynthesisUtterance(" ");
+  u.volume = 0; u.lang = "it-IT";
+  window.speechSynthesis.speak(u);
+  pickItalianVoice();
+}
+document.addEventListener("touchstart", warmTTS, {once:true});
+document.addEventListener("click", warmTTS, {once:true});
 
-// PIN
 function askPin(){ pinMode="unlock"; pinBuf=""; document.getElementById("ptitle").textContent="🔒 Inserisci PIN"; document.getElementById("psub").textContent="Area genitori (default: 1234)"; document.getElementById("pinErr").style.display="none"; updDots(); document.getElementById("pinModal").classList.add("show"); }
 function showPinChange(){ pinMode="change_old"; pinBuf=""; document.getElementById("ptitle").textContent="🔑 PIN attuale"; document.getElementById("psub").textContent="Inserisci il PIN attuale"; document.getElementById("pinErr").style.display="none"; updDots(); document.getElementById("pinModal").classList.add("show"); }
 function pk(k){ if(pinBuf.length>=4) return; pinBuf+=k; updDots(); if(pinBuf.length===4) setTimeout(pkSubmit,150); }
@@ -346,7 +363,6 @@ function pkSubmit(){
   }
 }
 
-// EDIT
 function goEdit(){ document.getElementById("editScreen").classList.add("show"); renderEdit(); }
 function goUse(){ document.getElementById("editScreen").classList.remove("show"); renderHome(); }
 function renderEdit(){ renderECats(); renderECards(); }
@@ -357,7 +373,6 @@ function renderECats(){
   for(var i=0; i<cats.length; i++){
     var cat = cats[i];
     html += '<div class="erow">';
-    html += '<span class="dh">☰</span>';
     html += '<input type="text" value="' + esc(cat.e) + '" maxlength="4" style="max-width:52px" onchange="setCatE(\'' + cat.id + '\',this.value)">';
     html += '<input type="text" value="' + esc(cat.name) + '" onchange="setCatN(\'' + cat.id + '\',this.value)">';
     html += '<button class="bdel" onclick="delCat(\'' + cat.id + '\')">🗑</button>';
@@ -369,16 +384,19 @@ function renderECats(){
 function setCatE(id,v){ var c=D.cats.find(function(x){ return x.id===id; }); if(c){ c.e=v; save(); } }
 function setCatN(id,v){ var c=D.cats.find(function(x){ return x.id===id; }); if(c){ c.name=v; save(); } }
 function addCat(){
+  var nome = prompt("Nome della nuova categoria:");
+  if(!nome || !nome.trim()) return;
+  var emoji = prompt("Emoji per la categoria (es: 🏠):", "📁");
   var id="cat_"+Date.now();
   var mo=D.cats.reduce(function(m,c){ return Math.max(m,c.o); },-1);
-  D.cats.push({id:id,name:"Nuova",e:"📁",o:mo+1});
+  D.cats.push({id:id,name:nome.trim(),e:emoji||"📁",o:mo+1});
   save(); renderECats(); renderECards(); toast("Categoria aggiunta!");
 }
 function delCat(id){
   var n=D.cards.filter(function(c){ return c.c===id; }).length;
-  if(n>0 && !confirm("Questa categoria ha "+n+" schede. Eliminare?")) return;
-  D.cards.filter(function(c){ return c.c===id; }).forEach(function(c){ c.c="__none__"; });
+  if(n>0 && !confirm("Questa categoria ha "+n+" schede. Eliminare tutto?")) return;
   D.cats=D.cats.filter(function(c){ return c.id!==id; });
+  D.cards=D.cards.filter(function(c){ return c.c!==id; });
   save(); renderECats(); renderECards(); toast("Eliminata");
 }
 
@@ -411,7 +429,7 @@ function renderECards(){
       html += '<button class="bdel" onclick="delCard(\''+card.id+'\')">🗑</button>';
       html += '</div>';
     }
-    html += '<button class="badd" onclick="addCard(\''+cat.id+'\')">+ Aggiungi scheda</button>';
+    html += '<button class="badd" onclick="addCardPrompt(\''+cat.id+'\')">+ Aggiungi scheda</button>';
     html += '</div>';
   }
   document.getElementById("ecards").innerHTML = html;
@@ -419,20 +437,17 @@ function renderECards(){
 
 function setCardL(id,v){ var c=D.cards.find(function(x){ return x.id===id; }); if(c){ c.l=v; save(); } }
 function setCardE(id,v){ var c=D.cards.find(function(x){ return x.id===id; }); if(c){ c.e=v; save(); } }
-function moveCard(id,catId){
-  var c=D.cards.find(function(x){ return x.id===id; }); if(!c) return;
-  c.c=catId; save(); toast("Spostata!"); setTimeout(renderECards,200);
-}
-function addCard(catId){
+function moveCard(id,catId){ var c=D.cards.find(function(x){ return x.id===id; }); if(!c) return; c.c=catId; save(); toast("Spostata!"); setTimeout(renderECards,200); }
+function addCardPrompt(catId){
+  var nome = prompt("Nome della nuova scheda:");
+  if(!nome || !nome.trim()) return;
+  var emoji = prompt("Emoji per la scheda (es: 🏠):", "❓");
   var id="card_"+Date.now();
   var n=D.cards.filter(function(c){ return c.c===catId; }).length;
-  D.cards.push({id:id,c:catId,l:"Nuova scheda",e:"❓",img:null,aud:null,o:n});
-  save(); renderECards(); toast("Scheda aggiunta!");
+  D.cards.push({id:id,c:catId,l:nome.trim(),e:emoji||"❓",img:null,aud:null,o:n});
+  save(); renderECards(); toast("Scheda aggiunta! Ora puoi metterci foto e audio qui sotto.");
 }
-function delCard(id){
-  D.cards=D.cards.filter(function(c){ return c.id!==id; });
-  save(); renderECards(); toast("Eliminata");
-}
+function delCard(id){ D.cards=D.cards.filter(function(c){ return c.id!==id; }); save(); renderECards(); toast("Eliminata"); }
 
 var pendImg=null;
 function pickImg(id){ pendImg=id; document.getElementById("inpImg").value=""; document.getElementById("inpImg").click(); }
@@ -447,11 +462,11 @@ var pendAud=null, mr=null, chunks=[], recId=null;
 function handleAudio(id){
   var card=D.cards.find(function(c){ return c.id===id; }); if(!card) return;
   if(card.aud){
-    if(confirm('"'+card.l+'"\nOK=Ascolta  Annulla=Elimina')){ new Audio(card.aud).play().catch(function(){}); }
+    if(confirm('"'+card.l+'"\nOK = Ascolta\nAnnulla = Elimina audio')){ new Audio(card.aud).play().catch(function(){}); }
     else{ card.aud=null; save(); renderECards(); toast("Audio rimosso"); }
     return;
   }
-  if(confirm('"'+card.l+'"\nOK=Registra  Annulla=Carica file')){ startRec(id); }
+  if(confirm('"'+card.l+'"\nOK = Registra microfono\nAnnulla = Carica file audio')){ startRec(id); }
   else{ pendAud=id; document.getElementById("inpAud").value=""; document.getElementById("inpAud").click(); }
 }
 document.getElementById("inpAud").onchange=function(){
@@ -469,7 +484,7 @@ function startRec(id){
     mr.onstop=function(){
       var blob=new Blob(chunks,{type:"audio/webm"});
       var r=new FileReader();
-      r.onload=function(e){ var c=D.cards.find(function(x){ return x.id===recId; }); if(c){ c.aud=e.target.result; save(); renderECards(); toast("Salvata!"); } stream.getTracks().forEach(function(t){ t.stop(); }); };
+      r.onload=function(e){ var c=D.cards.find(function(x){ return x.id===recId; }); if(c){ c.aud=e.target.result; save(); renderECards(); toast("Registrazione salvata!"); } stream.getTracks().forEach(function(t){ t.stop(); }); };
       r.readAsDataURL(blob);
     };
     mr.start();

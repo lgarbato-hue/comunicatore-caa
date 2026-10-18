@@ -27,20 +27,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 #btnClear{background:#f0f0ee;border:1.5px solid #ddd;border-radius:10px;padding:13px 16px;font-size:15px;cursor:pointer}
 #btnEdit{background:#f0f0ee;border:1.5px solid #ddd;border-radius:10px;padding:13px;font-size:18px;cursor:pointer}
 
-/* categories */
-#cats{display:flex;gap:8px;padding:10px 10px 6px;background:#fff;border-bottom:1px solid #ddd;overflow-x:auto;scrollbar-width:none}
-#cats::-webkit-scrollbar{display:none}
-.pill{flex-shrink:0;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid #ddd;background:#fff;color:#666;white-space:nowrap}
-.pill.on{background:#1D9E75;color:#fff;border-color:#1D9E75}
+/* folder header (when inside a folder) */
+#folderHdr{display:none;background:#fff;border-bottom:1px solid #ddd;padding:10px 12px;align-items:center;gap:10px}
+#folderHdr.show{display:flex}
+#folderHdr .back{background:#e1f5ee;color:#0F6E56;border:none;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+#folderHdr .back:active{background:#c8eede}
+#folderHdr .title{flex:1;font-size:16px;font-weight:700;color:#222}
 
-/* cards */
+/* grid (folders or cards) */
 #grid-wrap{flex:1;overflow-y:auto;padding:12px}
-#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
 .card{background:#fff;border:2px solid #e0e0de;border-radius:14px;padding:14px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:transform .1s;box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .card:active{transform:scale(0.88);border-color:#1D9E75}
-.card .ce{font-size:44px;line-height:1}
-.card img{width:58px;height:58px;object-fit:cover;border-radius:10px}
-.card .cl{font-size:12px;font-weight:700;text-align:center;line-height:1.3;word-break:break-word;color:#222}
+.card img{width:72px;height:72px;object-fit:cover;border-radius:10px}
+.card .cl{font-size:13px;font-weight:700;text-align:center;line-height:1.3;word-break:break-word;color:#222}
+
+/* folder tiles — bigger, visually distinct */
+.folder{background:#fff;border:2px solid #e0e0de;border-radius:16px;padding:18px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:transform .1s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.folder:active{transform:scale(0.93);border-color:#1D9E75}
+.ficon{width:84px;height:68px;position:relative;flex-shrink:0}
+.ficon .tab{position:absolute;left:6px;top:0;width:38px;height:14px;background:#1D9E75;border-radius:6px 6px 0 0}
+.ficon .body{position:absolute;left:0;top:10px;right:0;bottom:0;background:#1D9E75;border-radius:4px 10px 10px 10px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.08)}
+.ficon .count{position:absolute;right:6px;bottom:6px;background:rgba(255,255,255,.92);color:#0F6E56;font-size:12px;font-weight:800;padding:2px 7px;border-radius:999px;line-height:1}
+.folder .fname{font-size:15px;font-weight:800;text-align:center;line-height:1.25;color:#222;word-break:break-word}
+.folder .fimg{width:84px;height:84px;object-fit:cover;border-radius:14px;background:#f0f0ee}
+.folder .fcount{position:absolute;right:-4px;top:-4px;background:#1D9E75;color:#fff;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;line-height:1;border:2px solid #fff}
+.folder .fwrap{position:relative;display:inline-block}
 
 /* edit screen */
 #editScreen{display:none;flex-direction:column;height:100vh;overflow:hidden;background:#f0f0ee}
@@ -101,6 +113,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .hidden{display:none}
 .empty-msg{grid-column:1/-1;text-align:center;color:#aaa;padding:30px;font-size:14px;line-height:1.6}
+
+/* image placeholder (no emoji) */
+.noimg{width:58px;height:58px;border-radius:10px;background:#eef2f0;border:1.5px dashed #c5d5cd;display:flex;align-items:center;justify-content:center;color:#9ab5a9;font-size:22px;font-weight:700}
+.noimg.small{width:28px;height:28px;font-size:13px;border-radius:5px}
+.noimg.thumb{width:100%;height:100%;font-size:16px;border:none;border-radius:8px}
+
+/* generic modal (image source + ARASAAC search) */
+.gmodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:998;align-items:center;justify-content:center;padding:16px}
+.gmodal.show{display:flex}
+.gbox{background:#fff;border-radius:16px;padding:20px;width:100%;max-width:420px;max-height:85vh;display:flex;flex-direction:column;gap:12px}
+.gbox h2{font-size:16px;font-weight:700}
+.gbtn{width:100%;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;text-align:left;padding-left:16px}
+.gbtn.pri{background:#e1f5ee;color:#0F6E56}
+.gbtn.sec{background:#f0f0ee;color:#333}
+.gbtn.dan{background:#fdecea;color:#E24B4A}
+.gbtn.can{background:none;color:#888;text-align:center;font-weight:600}
+#arSearchRow{display:flex;gap:8px}
+#arQ{flex:1;border:1.5px solid #e0e0de;border-radius:10px;padding:11px 12px;font-size:15px;font-family:inherit}
+#arQ:focus{outline:2px solid #1D9E75;border-color:transparent}
+#arGo{background:#1D9E75;color:#fff;border:none;border-radius:10px;padding:0 18px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+#arRes{flex:1;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;min-height:120px}
+.arPic{border:2px solid #e0e0de;border-radius:10px;padding:5px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center}
+.arPic:active{border-color:#1D9E75;transform:scale(0.93)}
+.arPic img{width:100%;aspect-ratio:1;object-fit:contain}
+.arMsg{grid-column:1/-1;text-align:center;color:#aaa;font-size:13px;padding:20px;line-height:1.5}
+.arCredit{font-size:10px;color:#aaa;text-align:center;line-height:1.4}
 </style>
 </head>
 <body>
@@ -112,7 +150,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button id="btnClear" onclick="clearAll()">🗑 Cancella</button>
     <button id="btnEdit" onclick="askPin()">⚙️</button>
   </div>
-  <div id="cats"></div>
+  <div id="folderHdr">
+    <button class="back" onclick="goHome()">← Cartelle</button>
+    <span class="title" id="folderTitle"></span>
+  </div>
   <div id="grid-wrap"><div id="grid"></div></div>
 </div>
 
@@ -123,10 +164,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="bico" onclick="showPinChange()" style="border:1px solid #ddd;border-radius:8px;padding:6px 10px;font-size:13px;background:#f8f8f8">🔑 PIN</button>
   </div>
   <div id="editBody">
+    <button class="badd" onclick="addCat()" style="font-size:16px;padding:16px;background:#1D9E75;color:#fff;border-radius:12px">+ Aggiungi cartella</button>
     <div class="esec">
-      <div class="esec-hd">Categorie</div>
+      <div class="esec-hd">Cartelle</div>
       <div id="ecats"></div>
-      <button class="badd" onclick="addCat()">+ Aggiungi categoria</button>
     </div>
     <div id="ecards"></div>
   </div>
@@ -158,6 +199,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
+<div class="gmodal" id="imgSrcModal">
+  <div class="gbox">
+    <h2>🖼 Immagine della scheda</h2>
+    <button class="gbtn pri" onclick="openArasaac()">🔍 Cerca pittogramma (ARASAAC)</button>
+    <button class="gbtn sec" onclick="pickGallery()">📷 Foto dalla galleria</button>
+    <button class="gbtn dan" id="btnImgDel" onclick="removeImg()">🗑 Rimuovi immagine</button>
+    <button class="gbtn can" onclick="closeImgSrc()">Annulla</button>
+  </div>
+</div>
+
+<div class="gmodal" id="arModal">
+  <div class="gbox" style="height:80vh">
+    <h2>🔍 Cerca pittogramma</h2>
+    <div id="arSearchRow">
+      <input type="text" id="arQ" placeholder="Es: felice, pasta, dormire..." onkeydown="if(event.key==='Enter')arSearch()">
+      <button id="arGo" onclick="arSearch()">Cerca</button>
+    </div>
+    <div id="arRes"><div class="arMsg">Scrivi una parola e tocca Cerca.<br>Poi tocca il pittogramma che vuoi usare.</div></div>
+    <div class="arCredit">Pittogrammi ARASAAC (arasaac.org) · Governo d'Aragona · CC BY-NC-SA</div>
+    <button class="gbtn can" onclick="closeArasaac()">Chiudi</button>
+  </div>
+</div>
+
 <div id="toast"></div>
 <input type="file" id="inpImg" class="hidden" accept="image/*">
 <input type="file" id="inpAud" class="hidden" accept="audio/*">
@@ -167,60 +231,60 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 var DEF = {
   pin:"1234",
   cats:[
-    {id:"bisogni",name:"🟠 Bisogni",o:0},
-    {id:"emozioni",name:"💛 Emozioni",o:1},
-    {id:"cibo",name:"🍽 Cibo",o:2},
-    {id:"attivita",name:"🎮 Attività",o:3},
-    {id:"persone",name:"👨‍👩‍👧 Persone",o:4},
-    {id:"risposte",name:"✅ Risposte",o:5}
+    {id:"bisogni",name:"Bisogni",o:0},
+    {id:"emozioni",name:"Emozioni",o:1},
+    {id:"cibo",name:"Cibo",o:2},
+    {id:"attivita",name:"Attività",o:3},
+    {id:"persone",name:"Persone",o:4},
+    {id:"risposte",name:"Risposte",o:5}
   ],
   cards:[
-    {id:"b1",c:"bisogni",l:"Ho fame",e:"🍕",img:null,aud:null,o:0},
-    {id:"b2",c:"bisogni",l:"Ho sete",e:"💧",img:null,aud:null,o:1},
-    {id:"b3",c:"bisogni",l:"Bagno",e:"🚽",img:null,aud:null,o:2},
-    {id:"b4",c:"bisogni",l:"Sono stanco",e:"😴",img:null,aud:null,o:3},
-    {id:"b5",c:"bisogni",l:"Mi fa male",e:"🤕",img:null,aud:null,o:4},
-    {id:"b6",c:"bisogni",l:"Ho freddo",e:"🥶",img:null,aud:null,o:5},
-    {id:"b7",c:"bisogni",l:"Ho caldo",e:"🥵",img:null,aud:null,o:6},
-    {id:"b8",c:"bisogni",l:"Sto male",e:"🤢",img:null,aud:null,o:7},
-    {id:"e1",c:"emozioni",l:"Felice",e:"😄",img:null,aud:null,o:0},
-    {id:"e2",c:"emozioni",l:"Triste",e:"😢",img:null,aud:null,o:1},
-    {id:"e3",c:"emozioni",l:"Arrabbiato",e:"😡",img:null,aud:null,o:2},
-    {id:"e4",c:"emozioni",l:"Ho paura",e:"😨",img:null,aud:null,o:3},
-    {id:"e5",c:"emozioni",l:"Tranquillo",e:"😌",img:null,aud:null,o:4},
-    {id:"e6",c:"emozioni",l:"Abbraccio",e:"🤗",img:null,aud:null,o:5},
-    {id:"e7",c:"emozioni",l:"Non sto bene",e:"😔",img:null,aud:null,o:6},
-    {id:"c1",c:"cibo",l:"Pasta",e:"🍝",img:null,aud:null,o:0},
-    {id:"c2",c:"cibo",l:"Pizza",e:"🍕",img:null,aud:null,o:1},
-    {id:"c3",c:"cibo",l:"Pane",e:"🍞",img:null,aud:null,o:2},
-    {id:"c4",c:"cibo",l:"Cioccolato",e:"🍫",img:null,aud:null,o:3},
-    {id:"c5",c:"cibo",l:"Frutta",e:"🍎",img:null,aud:null,o:4},
-    {id:"c6",c:"cibo",l:"Biscotti",e:"🍪",img:null,aud:null,o:5},
-    {id:"c7",c:"cibo",l:"Latte",e:"🥛",img:null,aud:null,o:6},
-    {id:"c8",c:"cibo",l:"Gelato",e:"🍦",img:null,aud:null,o:7},
-    {id:"a1",c:"attivita",l:"Tablet",e:"📱",img:null,aud:null,o:0},
-    {id:"a2",c:"attivita",l:"Televisione",e:"📺",img:null,aud:null,o:1},
-    {id:"a3",c:"attivita",l:"Musica",e:"🎵",img:null,aud:null,o:2},
-    {id:"a4",c:"attivita",l:"Uscire",e:"🚶",img:null,aud:null,o:3},
-    {id:"a5",c:"attivita",l:"Dormire",e:"🛌",img:null,aud:null,o:4},
-    {id:"a6",c:"attivita",l:"Disegnare",e:"✏️",img:null,aud:null,o:5},
-    {id:"a7",c:"attivita",l:"Puzzle",e:"🧩",img:null,aud:null,o:6},
-    {id:"a8",c:"attivita",l:"Pallone",e:"⚽",img:null,aud:null,o:7},
-    {id:"p1",c:"persone",l:"Mamma",e:"👩",img:null,aud:null,o:0},
-    {id:"p2",c:"persone",l:"Papà",e:"👨",img:null,aud:null,o:1},
-    {id:"p3",c:"persone",l:"Nonno",e:"👴",img:null,aud:null,o:2},
-    {id:"p4",c:"persone",l:"Nonna",e:"👵",img:null,aud:null,o:3},
-    {id:"p5",c:"persone",l:"Maestra",e:"👩‍🏫",img:null,aud:null,o:4},
-    {id:"p6",c:"persone",l:"Dottore",e:"👨‍⚕️",img:null,aud:null,o:5},
-    {id:"r1",c:"risposte",l:"Sì",e:"✅",img:null,aud:null,o:0},
-    {id:"r2",c:"risposte",l:"No",e:"❌",img:null,aud:null,o:1},
-    {id:"r3",c:"risposte",l:"Per favore",e:"🙏",img:null,aud:null,o:2},
-    {id:"r4",c:"risposte",l:"Grazie",e:"🙌",img:null,aud:null,o:3},
-    {id:"r5",c:"risposte",l:"Aspetta",e:"⏳",img:null,aud:null,o:4},
-    {id:"r6",c:"risposte",l:"Ancora",e:"🔁",img:null,aud:null,o:5},
-    {id:"r7",c:"risposte",l:"Basta",e:"🛑",img:null,aud:null,o:6},
-    {id:"r8",c:"risposte",l:"Va bene",e:"👍",img:null,aud:null,o:7},
-    {id:"r9",c:"risposte",l:"Non voglio",e:"👎",img:null,aud:null,o:8}
+    {id:"b1",c:"bisogni",l:"Ho fame",kw:"avere fame",img:null,aud:null,o:0},
+    {id:"b2",c:"bisogni",l:"Ho sete",kw:"avere sete",img:null,aud:null,o:1},
+    {id:"b3",c:"bisogni",l:"Bagno",kw:"gabinetto",img:null,aud:null,o:2},
+    {id:"b4",c:"bisogni",l:"Sono stanco",kw:"stanco",img:null,aud:null,o:3},
+    {id:"b5",c:"bisogni",l:"Mi fa male",kw:"dolore",img:null,aud:null,o:4},
+    {id:"b6",c:"bisogni",l:"Ho freddo",kw:"avere freddo",img:null,aud:null,o:5},
+    {id:"b7",c:"bisogni",l:"Ho caldo",kw:"avere caldo",img:null,aud:null,o:6},
+    {id:"b8",c:"bisogni",l:"Sto male",kw:"malato",img:null,aud:null,o:7},
+    {id:"e1",c:"emozioni",l:"Felice",kw:"felice",img:null,aud:null,o:0},
+    {id:"e2",c:"emozioni",l:"Triste",kw:"triste",img:null,aud:null,o:1},
+    {id:"e3",c:"emozioni",l:"Arrabbiato",kw:"arrabbiato",img:null,aud:null,o:2},
+    {id:"e4",c:"emozioni",l:"Ho paura",kw:"paura",img:null,aud:null,o:3},
+    {id:"e5",c:"emozioni",l:"Tranquillo",kw:"tranquillo",img:null,aud:null,o:4},
+    {id:"e6",c:"emozioni",l:"Abbraccio",kw:"abbracciare",img:null,aud:null,o:5},
+    {id:"e7",c:"emozioni",l:"Non sto bene",kw:"stare male",img:null,aud:null,o:6},
+    {id:"c1",c:"cibo",l:"Pasta",kw:"pasta",img:null,aud:null,o:0},
+    {id:"c2",c:"cibo",l:"Pizza",kw:"pizza",img:null,aud:null,o:1},
+    {id:"c3",c:"cibo",l:"Pane",kw:"pane",img:null,aud:null,o:2},
+    {id:"c4",c:"cibo",l:"Cioccolato",kw:"cioccolato",img:null,aud:null,o:3},
+    {id:"c5",c:"cibo",l:"Frutta",kw:"frutta",img:null,aud:null,o:4},
+    {id:"c6",c:"cibo",l:"Biscotti",kw:"biscotto",img:null,aud:null,o:5},
+    {id:"c7",c:"cibo",l:"Latte",kw:"latte",img:null,aud:null,o:6},
+    {id:"c8",c:"cibo",l:"Gelato",kw:"gelato",img:null,aud:null,o:7},
+    {id:"a1",c:"attivita",l:"Tablet",kw:"tablet",img:null,aud:null,o:0},
+    {id:"a2",c:"attivita",l:"Televisione",kw:"televisione",img:null,aud:null,o:1},
+    {id:"a3",c:"attivita",l:"Musica",kw:"musica",img:null,aud:null,o:2},
+    {id:"a4",c:"attivita",l:"Uscire",kw:"uscire",img:null,aud:null,o:3},
+    {id:"a5",c:"attivita",l:"Dormire",kw:"dormire",img:null,aud:null,o:4},
+    {id:"a6",c:"attivita",l:"Disegnare",kw:"disegnare",img:null,aud:null,o:5},
+    {id:"a7",c:"attivita",l:"Puzzle",kw:"puzzle",img:null,aud:null,o:6},
+    {id:"a8",c:"attivita",l:"Pallone",kw:"palla",img:null,aud:null,o:7},
+    {id:"p1",c:"persone",l:"Mamma",kw:"mamma",img:null,aud:null,o:0},
+    {id:"p2",c:"persone",l:"Papà",kw:"papà",img:null,aud:null,o:1},
+    {id:"p3",c:"persone",l:"Nonno",kw:"nonno",img:null,aud:null,o:2},
+    {id:"p4",c:"persone",l:"Nonna",kw:"nonna",img:null,aud:null,o:3},
+    {id:"p5",c:"persone",l:"Maestra",kw:"maestra",img:null,aud:null,o:4},
+    {id:"p6",c:"persone",l:"Dottore",kw:"medico",img:null,aud:null,o:5},
+    {id:"r1",c:"risposte",l:"Sì",kw:"sì",img:null,aud:null,o:0},
+    {id:"r2",c:"risposte",l:"No",kw:"no",img:null,aud:null,o:1},
+    {id:"r3",c:"risposte",l:"Per favore",kw:"per favore",img:null,aud:null,o:2},
+    {id:"r4",c:"risposte",l:"Grazie",kw:"grazie",img:null,aud:null,o:3},
+    {id:"r5",c:"risposte",l:"Aspetta",kw:"aspettare",img:null,aud:null,o:4},
+    {id:"r6",c:"risposte",l:"Ancora",kw:"ancora",img:null,aud:null,o:5},
+    {id:"r7",c:"risposte",l:"Basta",kw:"basta",img:null,aud:null,o:6},
+    {id:"r8",c:"risposte",l:"Va bene",kw:"va bene",img:null,aud:null,o:7},
+    {id:"r9",c:"risposte",l:"Non voglio",kw:"non volere",img:null,aud:null,o:8}
   ]
 };
 
@@ -228,37 +292,84 @@ var DEF = {
 var D, curCat, sentence=[], pinBuf="", pinMode="unlock", pinOld="";
 
 function load(){
-  try{ var s=localStorage.getItem("caa2"); if(s){D=JSON.parse(s);return;} }catch(e){}
+  try{ var s=localStorage.getItem("caa2"); if(s){D=JSON.parse(s);migrate();return;} }catch(e){}
   D=JSON.parse(JSON.stringify(DEF));
 }
+// aggiorna i dati salvati in passato: eredita le parole chiave dai default
+// e toglie le emoji dai nomi delle categorie
+function migrate(){
+  var ch=false;
+  D.cards.forEach(function(c){
+    if(!c.kw&&!c.noAuto){
+      var d=DEF.cards.find(function(x){return x.id===c.id;});
+      if(d&&d.kw){c.kw=d.kw;ch=true;}
+      else if(c.l){c.kw=c.l.toLowerCase();ch=true;}
+    }
+  });
+  D.cats.forEach(function(c){
+    var clean=(c.name||"").replace(/^[^\p{L}\p{N}]+/u,"").trim();
+    if(clean&&clean!==c.name){c.name=clean;ch=true;}
+  });
+  if(ch)save();
+}
+
 function save(){
   try{localStorage.setItem("caa2",JSON.stringify(D));}catch(e){}
 }
 
 // ── USE MODE ──────────────────────────────────────────────
+// due viste: "home" = griglia di cartelle, "folder" = schede dentro una cartella
 function renderCats(){
-  var cs=D.cats.slice().sort(function(a,b){return a.o-b.o});
-  var h="";
-  cs.forEach(function(c){
-    h+='<button class="pill'+(c.id===curCat?" on":"")+'" onclick="selCat(\''+c.id+'\')">'+c.name+'</button>';
-  });
-  document.getElementById("cats").innerHTML=h;
+  // chiamata all'inizio: mostra la home con le cartelle
+  curCat=null;
+  renderHome();
 }
 
-function selCat(id){ curCat=id; renderCats(); renderCards(); }
+function renderHome(){
+  curCat=null;
+  document.getElementById("folderHdr").classList.remove("show");
+  var cs=D.cats.slice().sort(function(a,b){return a.o-b.o});
+  var g=document.getElementById("grid");
+  if(!cs.length){
+    g.innerHTML='<div class="empty-msg">Nessuna cartella.<br>Aggiungine dal menu ⚙️</div>';
+    return;
+  }
+  var h="";
+  cs.forEach(function(cat){
+    var n=D.cards.filter(function(c){return c.c===cat.id;}).length;
+    var pic=cat.img
+      ?'<div class="fwrap"><img class="fimg" src="'+cat.img+'" alt="'+esc(cat.name)+'">'+(n?'<span class="fcount">'+n+'</span>':'')+'</div>'
+      :'<div class="ficon"><div class="tab"></div><div class="body"></div>'+(n?'<span class="count">'+n+'</span>':'')+'</div>';
+    h+='<div class="folder" onclick="openFolder(\''+cat.id+'\')">'
+      +pic
+      +'<span class="fname">'+esc(cat.name)+'</span>'
+      +'</div>';
+  });
+  g.innerHTML=h;
+}
+
+function openFolder(id){
+  curCat=id;
+  var cat=D.cats.find(function(c){return c.id===id;});
+  document.getElementById("folderTitle").textContent=cat?cat.name:"";
+  document.getElementById("folderHdr").classList.add("show");
+  renderCards();
+}
+
+function goHome(){ renderHome(); }
 
 function renderCards(){
   var g=document.getElementById("grid");
   var cards=D.cards.filter(function(c){return c.c===curCat}).sort(function(a,b){return a.o-b.o});
   if(!cards.length){
-    g.innerHTML='<div class="empty-msg">Nessuna scheda.<br>Aggiungile dal menu ⚙️</div>';
+    g.innerHTML='<div class="empty-msg">Nessuna scheda in questa cartella.<br>Aggiungile dal menu ⚙️</div>';
     return;
   }
   var h="";
   cards.forEach(function(card){
     var thumb=card.img
       ?'<img src="'+card.img+'" alt="'+esc(card.l)+'">'
-      :'<span class="ce">'+card.e+'</span>';
+      :'<span class="noimg" style="width:72px;height:72px;font-size:26px">'+esc((card.l||"?").charAt(0).toUpperCase())+'</span>';
     h+='<div class="card" onclick="tapCard(\''+card.id+'\')">'+thumb+'<span class="cl">'+esc(card.l)+'</span></div>';
   });
   g.innerHTML=h;
@@ -282,7 +393,7 @@ function renderBar(){
   sentence.forEach(function(card,i){
     var div=document.createElement("div");
     div.className="chip";
-    var th=card.img?'<img src="'+card.img+'" style="width:28px;height:28px;object-fit:cover;border-radius:5px">':'<span>'+card.e+'</span>';
+    var th=card.img?'<img src="'+card.img+'" style="width:28px;height:28px;object-fit:cover;border-radius:5px">':'<span class="noimg small">'+esc((card.l||"?").charAt(0).toUpperCase())+'</span>';
     div.innerHTML=th+'<span>'+esc(card.l)+'</span>';
     div.onclick=function(){sentence.splice(i,1);renderBar();};
     bar.appendChild(div);
@@ -363,7 +474,8 @@ function goEdit(){
 function goUse(){
   document.getElementById("editScreen").classList.remove("show");
   document.getElementById("app").classList.remove("hide");
-  renderCats(); renderCards();
+  // torna alla home delle cartelle
+  renderHome();
 }
 
 function renderEdit(){ renderECats(); renderECards(); }
@@ -372,9 +484,16 @@ function renderECats(){
   var cs=D.cats.slice().sort(function(a,b){return a.o-b.o});
   var h="";
   cs.forEach(function(cat){
-    h+='<div class="erow" draggable="true" data-id="'+cat.id+'" ondragstart="dcStart(event,\''+cat.id+'\')" ondragover="dcOver(event)" ondrop="dcDrop(event,\''+cat.id+'\')">'
-      +'<span class="dh">☰</span>'
-      +'<input type="text" value="'+esc(cat.name)+'" onchange="renameCat(\''+cat.id+'\',this.value)">'
+    var th=cat.img
+      ?'<img src="'+cat.img+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">'
+      :'<span class="noimg thumb">'+esc((cat.name||"?").charAt(0).toUpperCase())+'</span>';
+    // il draggable sta solo sull'handle ☰, non su tutta la riga,
+    // altrimenti su tablet intercetta il tocco e non si può né scrivere né toccare la miniatura
+    h+='<div class="erow" data-id="'+cat.id+'" ondragover="dcOver(event)" ondrop="dcDrop(event,\''+cat.id+'\')">'
+      +'<span class="dh" draggable="true" ondragstart="dcStart(event,\''+cat.id+'\')">☰</span>'
+      +'<div class="cthumb" onclick="openImgSrc(\''+cat.id+'\',\'cat\')" title="Cambia immagine">'+th+'</div>'
+      +'<input type="text" value="'+esc(cat.name)+'" oninput="renameCat(\''+cat.id+'\',this.value)">'
+      +'<button class="bico" onclick="promptRenameCat(\''+cat.id+'\')" title="Rinomina" style="color:#1D9E75">✏️</button>'
       +'<button class="bico del" onclick="delCat(\''+cat.id+'\')">🗑</button>'
       +'</div>';
   });
@@ -395,18 +514,34 @@ function dcDrop(e,tid){
 }
 
 function renameCat(id,v){var c=D.cats.find(function(x){return x.id===id});if(c){c.name=v;save();}}
+// rinomina via prompt — sempre funzionante su qualsiasi dispositivo
+function promptRenameCat(id){
+  var c=D.cats.find(function(x){return x.id===id});
+  if(!c)return;
+  var nn=prompt("Nuovo nome della cartella:", c.name||"");
+  if(nn===null)return;
+  nn=nn.trim();
+  if(!nn){toast("Il nome non può essere vuoto"); return;}
+  c.name=nn; save(); renderECats(); refreshView(); toast("Cartella rinominata");
+}
 function addCat(){
+  var name=prompt("Nome della nuova cartella:","");
+  if(name===null)return; // annullato
+  name=(name||"").trim();
+  if(!name){toast("Il nome non può essere vuoto"); return;}
   var id="cat_"+Date.now();
   var mo=D.cats.reduce(function(m,c){return Math.max(m,c.o)},-1);
-  D.cats.push({id:id,name:"📁 Nuova categoria",o:mo+1});
-  save(); renderECats(); renderECards(); toast("Categoria aggiunta!");
+  D.cats.push({id:id,name:name,o:mo+1,img:null,noAuto:1});
+  save(); renderECats(); renderECards(); toast("Cartella creata! Tocca la miniatura per aggiungere un'immagine.");
+  // apre subito il selettore immagine per la nuova cartella
+  setTimeout(function(){ openImgSrc(id,"cat"); }, 300);
 }
 function delCat(id){
   var n=D.cards.filter(function(c){return c.c===id}).length;
-  if(n>0&&!confirm("Questa categoria ha "+n+" schede. Le schede verranno spostate in Senza categoria. Continuare?"))return;
+  if(n>0&&!confirm("Questa cartella ha "+n+" schede. Le schede verranno spostate in Senza cartella. Continuare?"))return;
   D.cards.filter(function(c){return c.c===id}).forEach(function(c){c.c="__none__";});
   D.cats=D.cats.filter(function(c){return c.id!==id});
-  save(); renderECats(); renderECards(); toast("Categoria eliminata");
+  save(); renderECats(); renderECards(); toast("Cartella eliminata");
 }
 
 function renderECards(){
@@ -416,21 +551,22 @@ function renderECards(){
     var cards=D.cards.filter(function(c){return c.c===cat.id}).sort(function(a,b){return a.o-b.o});
     var rows="";
     cards.forEach(function(card){
-      var th=card.img?'<img src="'+card.img+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">':'<span style="font-size:26px">'+card.e+'</span>';
+      var th=card.img?'<img src="'+card.img+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">':'<span class="noimg thumb">'+esc((card.l||"?").charAt(0).toUpperCase())+'</span>';
       var opts=cs.map(function(x){return'<option value="'+x.id+'"'+(x.id===card.c?" selected":"")+'>'+esc(x.name)+'</option>';}).join("");
       var aLabel=card.aud?"🔊 Audio ok":"🎙 Audio";
       var aCls=card.aud?" has":"";
-      rows+='<div class="crow" draggable="true" data-id="'+card.id+'" ondragstart="dkStart(event,\''+card.id+'\')" ondragover="dcOver(event)" ondrop="dkDrop(event,\''+card.id+'\')">'
-        +'<span class="dh" style="font-size:16px">☰</span>'
-        +'<div class="cthumb" onclick="pickImg(\''+card.id+'\')" title="Cambia foto">'+th+'</div>'
+      rows+='<div class="crow" data-id="'+card.id+'" ondragover="dcOver(event)" ondrop="dkDrop(event,\''+card.id+'\')">'
+        +'<span class="dh" style="font-size:16px" draggable="true" ondragstart="dkStart(event,\''+card.id+'\')">☰</span>'
+        +'<div class="cthumb" onclick="openImgSrc(\''+card.id+'\')" title="Cambia immagine">'+th+'</div>'
         +'<div class="cfields">'
-          +'<input type="text" value="'+esc(card.l)+'" placeholder="Nome" onchange="renameCard(\''+card.id+'\',this.value)">'
+          +'<input type="text" value="'+esc(card.l)+'" placeholder="Nome" oninput="renameCard(\''+card.id+'\',this.value)">'
           +'<div class="cmeta">'
-            +'<input type="text" value="'+esc(card.e||"")+'" placeholder="Emoji" maxlength="4" style="max-width:60px" onchange="setEmoji(\''+card.id+'\',this.value)">'
             +'<select onchange="moveCard(\''+card.id+'\',this.value)">'+opts+'</select>'
             +'<button class="baudio'+aCls+'" id="ab_'+card.id+'" onclick="handleAudio(\''+card.id+'\')">'+aLabel+'</button>'
           +'</div>'
         +'</div>'
+        +'<button class="bico" onclick="promptRenameCard(\''+card.id+'\')" title="Rinomina" style="color:#1D9E75">✏️</button>'
+        +'<button class="bico" onclick="dupCard(\''+card.id+'\')" title="Duplica" style="color:#1D9E75;font-size:20px">⎘</button>'
         +'<button class="bico del" onclick="delCard(\''+card.id+'\')">🗑</button>'
         +'</div>';
     });
@@ -460,7 +596,15 @@ function dkDrop(e,tid){
 }
 
 function renameCard(id,v){var c=D.cards.find(function(x){return x.id===id});if(c){c.l=v;save();}}
-function setEmoji(id,v){var c=D.cards.find(function(x){return x.id===id});if(c){c.e=v;save();}}
+function promptRenameCard(id){
+  var c=D.cards.find(function(x){return x.id===id});
+  if(!c)return;
+  var nn=prompt("Nuovo nome della scheda:", c.l||"");
+  if(nn===null)return;
+  nn=nn.trim();
+  if(!nn){toast("Il nome non può essere vuoto"); return;}
+  c.l=nn; save(); renderECards(); toast("Scheda rinominata");
+}
 function moveCard(id,catId){
   var c=D.cards.find(function(x){return x.id===id});
   if(!c)return; c.c=catId;
@@ -470,18 +614,60 @@ function moveCard(id,catId){
 function addCard(catId){
   var id="card_"+Date.now();
   var n=D.cards.filter(function(c){return c.c===catId}).length;
-  D.cards.push({id:id,c:catId,l:"Nuova scheda",e:"❓",img:null,aud:null,o:n});
+  D.cards.push({id:id,c:catId,l:"Nuova scheda",img:null,aud:null,o:n});
   save(); renderECards(); toast("Scheda aggiunta!");
 }
 function delCard(id){
   D.cards=D.cards.filter(function(c){return c.id!==id});
   save(); renderECards(); toast("Scheda eliminata");
 }
+// duplica una scheda nella stessa cartella mantenendo nome, immagine, audio e parola chiave
+function dupCard(id){
+  var c=D.cards.find(function(x){return x.id===id});
+  if(!c)return;
+  var copy=JSON.parse(JSON.stringify(c));
+  copy.id="card_"+Date.now();
+  copy.l=c.l+" (copia)";
+  // la posiziona subito dopo l'originale nella stessa cartella
+  var cc=D.cards.filter(function(x){return x.c===c.c}).sort(function(a,b){return a.o-b.o});
+  var pos=cc.findIndex(function(x){return x.id===id});
+  copy.o=(pos>=0?c.o:cc.length)+0.5;
+  D.cards.push(copy);
+  // rinormalizza l'ordine della cartella
+  var cc2=D.cards.filter(function(x){return x.c===c.c}).sort(function(a,b){return a.o-b.o});
+  cc2.forEach(function(x,i){x.o=i;});
+  save(); renderECards(); toast("Scheda duplicata!");
+}
 
 // ── IMAGE ─────────────────────────────────────────────────
-var pendImg=null;
-function pickImg(id){
-  pendImg=id;
+// pendKind: "card" (default) oppure "cat"
+var pendImg=null, pendKind="card";
+
+function pendObj(){
+  return pendKind==="cat"
+    ? D.cats.find(function(x){return x.id===pendImg;})
+    : D.cards.find(function(x){return x.id===pendImg;});
+}
+function afterImgChange(){
+  save(); renderECards();
+  // se stiamo guardando le cartelle (home) e cambia una cat, aggiorna anche quella
+  if(pendKind==="cat") refreshView();
+}
+
+function openImgSrc(id, kind){
+  pendImg=id; pendKind=kind||"card";
+  var o=pendObj();
+  document.getElementById("btnImgDel").style.display=(o&&o.img)?"":"none";
+  document.getElementById("imgSrcModal").classList.add("show");
+}
+function closeImgSrc(){document.getElementById("imgSrcModal").classList.remove("show");}
+function removeImg(){
+  var o=pendObj();
+  if(o){o.img=null;o.noAuto=1;afterImgChange();}
+  closeImgSrc(); toast("Immagine rimossa");
+}
+function pickGallery(){
+  closeImgSrc();
   document.getElementById("inpImg").value="";
   document.getElementById("inpImg").click();
 }
@@ -489,11 +675,111 @@ document.getElementById("inpImg").onchange=function(){
   var f=this.files[0]; if(!f||!pendImg)return;
   var r=new FileReader();
   r.onload=function(e){
-    var c=D.cards.find(function(x){return x.id===pendImg});
-    if(c){c.img=e.target.result;save();renderECards();toast("Foto caricata!");}
+    shrinkImage(e.target.result,function(small){
+      var o=pendObj();
+      if(o){o.img=small;afterImgChange();toast("Foto caricata!");}
+    });
   };
   r.readAsDataURL(f);
 };
+
+// riduce le foto a max 300px per non riempire la memoria del device
+function shrinkImage(dataUrl,cb){
+  var im=new Image();
+  im.onload=function(){
+    var MAX=300, w=im.width, h=im.height;
+    if(w<=MAX&&h<=MAX){cb(dataUrl);return;}
+    var s=MAX/Math.max(w,h);
+    var cv=document.createElement("canvas");
+    cv.width=Math.round(w*s); cv.height=Math.round(h*s);
+    cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);
+    cb(cv.toDataURL("image/jpeg",0.82));
+  };
+  im.onerror=function(){cb(dataUrl);};
+  im.src=dataUrl;
+}
+
+// ── ARASAAC ───────────────────────────────────────────────
+function openArasaac(){
+  closeImgSrc();
+  var o=pendObj();
+  var seed=o?(o.kw||o.l||o.name||""):"";
+  document.getElementById("arQ").value=seed;
+  document.getElementById("arRes").innerHTML='<div class="arMsg">Scrivi una parola e tocca Cerca.<br>Poi tocca il pittogramma che vuoi usare.</div>';
+  document.getElementById("arModal").classList.add("show");
+  if(seed)arSearch();
+}
+function closeArasaac(){document.getElementById("arModal").classList.remove("show");}
+
+function arSearch(){
+  var q=document.getElementById("arQ").value.trim();
+  var res=document.getElementById("arRes");
+  if(!q)return;
+  if(!navigator.onLine){res.innerHTML='<div class="arMsg">Serve la connessione internet per cercare i pittogrammi.</div>';return;}
+  res.innerHTML='<div class="arMsg">Cerco...</div>';
+  fetch("https://api.arasaac.org/api/pictograms/it/search/"+encodeURIComponent(q))
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(list){
+      if(!list||!list.length){res.innerHTML='<div class="arMsg">Nessun risultato per "'+esc(q)+'".<br>Prova con una parola diversa.</div>';return;}
+      var h="";
+      list.slice(0,24).forEach(function(p){
+        var u="https://static.arasaac.org/pictograms/"+p._id+"/"+p._id+"_300.png";
+        h+='<div class="arPic" onclick="arPick('+p._id+')"><img src="'+u+'" loading="lazy"></div>';
+      });
+      res.innerHTML=h;
+    })
+    .catch(function(){res.innerHTML='<div class="arMsg">Errore di ricerca. Controlla la connessione e riprova.</div>';});
+}
+
+function arPick(pid){
+  var url="https://static.arasaac.org/pictograms/"+pid+"/"+pid+"_300.png";
+  toast("Scarico il pittogramma...");
+  arToDataUrl(url,function(data){
+    var o=pendObj();
+    if(o){o.img=data;afterImgChange();toast("Pittogramma salvato!");}
+    closeArasaac();
+  });
+}
+
+// scarica il pittogramma e lo salva in locale (base64) così funziona anche offline
+function arToDataUrl(url,cb){
+  fetch(url).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){
+    var rd=new FileReader();
+    rd.onload=function(e){cb(e.target.result);};
+    rd.onerror=function(){cb(url);};
+    rd.readAsDataURL(b);
+  }).catch(function(){cb(url);});
+}
+
+// al primo avvio con internet, scarica da solo i pittogrammi per schede E cartelle
+function autoFillPictos(){
+  if(!navigator.onLine)return;
+  var todo=[];
+  D.cards.forEach(function(c){ if(!c.img&&c.kw&&!c.noAuto) todo.push({kw:c.kw,obj:c}); });
+  D.cats.forEach(function(c){ if(!c.img&&!c.noAuto){ todo.push({kw:(c.name||"").toLowerCase(),obj:c}); } });
+  if(!todo.length)return;
+  var i=0, changed=false;
+  function next(){
+    if(i>=todo.length){if(changed){save();refreshView();if(document.getElementById("editScreen").classList.contains("show"))renderECards();}return;}
+    var it=todo[i++];
+    if(!it.kw){next();return;}
+    fetch("https://api.arasaac.org/api/pictograms/it/search/"+encodeURIComponent(it.kw))
+      .then(function(r){if(!r.ok)throw 0;return r.json();})
+      .then(function(list){
+        if(list&&list.length){
+          var pid=list[0]._id;
+          arToDataUrl("https://static.arasaac.org/pictograms/"+pid+"/"+pid+"_300.png",function(data){
+            it.obj.img=data; changed=true;
+            if(i%6===0){save();refreshView();}
+            next();
+          });
+        } else next();
+      })
+      .catch(function(){next();});
+  }
+  next();
+}
+window.addEventListener("online",autoFillPictos);
 
 // ── AUDIO ─────────────────────────────────────────────────
 var pendAud=null, mr=null, chunks=[], recId=null;
@@ -552,11 +838,16 @@ function toast(msg){
   window._tt=setTimeout(function(){t.classList.remove("show");},2200);
 }
 
+// ricarica la vista corrente (home o cartella) senza cambiare dove sei
+function refreshView(){
+  if(curCat) renderCards();
+  else renderHome();
+}
+
 // ── INIT ──────────────────────────────────────────────────
 load();
-curCat=D.cats[0]?D.cats[0].id:null;
-renderCats();
-renderCards();
+renderHome();
+autoFillPictos();
 </script>
 <script>
 // blocco uscita accidentale
@@ -565,7 +856,7 @@ window.onpopstate=function(){history.pushState(null,null,location.href);};
 // wakelock: impedisce che lo schermo si spenga
 if("wakeLock" in navigator){navigator.wakeLock.request("screen").catch(function(){});}
 document.addEventListener("visibilitychange",function(){
-  if(document.visibilityState==="visible"</body></body>"wakeLock" in navigator){
+  if(document.visibilityState==="visible" && "wakeLock" in navigator){
     navigator.wakeLock.request("screen").catch(function(){});
   }
 });

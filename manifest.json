@@ -1,19 +1,15 @@
 {
   "name": "Comunicatore CAA",
   "short_name": "Comunicatore",
-  "description": "App di comunicazione per ragazzi con autismo",
-  "start_url": "comunicatore_caa1.html",
-  "scope": ".",
+  "description": "Comunicatore CAA personalizzabile",
+  "start_url": "./comunicatore_caa.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#f0f0ee",
+  "background_color": "#87CEEA",
   "theme_color": "#1D9E75",
   "icons": [
-    {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231D9E75'/%3E%3Ctext y='72' x='14' font-size='64'%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E",
-      "sizes": "192x192 512x512 any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }

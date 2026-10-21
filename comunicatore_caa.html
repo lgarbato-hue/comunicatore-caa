@@ -171,12 +171,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="bico" onclick="showPinChange()" style="border:1px solid #ddd;border-radius:8px;padding:6px 10px;font-size:13px;background:#f8f8f8">🔑 PIN</button>
   </div>
   <div id="editBody">
-    <button class="badd" onclick="addCat()" style="font-size:16px;padding:16px;background:#1D9E75;color:#fff;border-radius:12px">+ Aggiungi cartella</button>
-    <div class="esec">
-      <div class="esec-hd">Cartelle</div>
+    <button class="badd" onclick="addCat()" style="font-size:18px;padding:18px;background:#1D9E75;color:#fff;border-radius:12px">+ Aggiungi cartella</button>
+    <div style="background:#fff;border-radius:14px;border:2px solid #1D9E75;padding:14px">
+      <h2 style="font-size:16px;font-weight:800;color:#0F6E56;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:.05em">🗂 Le tue cartelle</h2>
       <div id="ecats"></div>
     </div>
-    <div id="ecards"></div>
+    <div style="background:#fff;border-radius:14px;border:1px solid #e0e0de;padding:14px">
+      <h2 style="font-size:16px;font-weight:800;color:#555;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:.05em">📇 Schede dentro le cartelle</h2>
+      <div id="ecards"></div>
+    </div>
   </div>
 </div>
 
@@ -489,24 +492,30 @@ function renderEdit(){ renderECats(); renderECards(); }
 
 function renderECats(){
   var cs=D.cats.slice().sort(function(a,b){return a.o-b.o});
-  var h="";
+  var el=document.getElementById("ecats");
+  if(!cs.length){
+    el.innerHTML='<div style="padding:20px;text-align:center;color:#aaa">Nessuna cartella.<br>Tocca "+ Aggiungi cartella" in cima.</div>';
+    return;
+  }
+  // vista a griglia: ogni cartella come tile con pulsanti Rinomina/Elimina sotto
+  var h='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px">';
   cs.forEach(function(cat){
-    var th=cat.img
-      ?'<img src="'+cat.img+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px">'
-      :'<span class="noimg thumb">'+esc((cat.name||"?").charAt(0).toUpperCase())+'</span>';
-    // il draggable sta solo sull'handle ☰, non su tutta la riga,
-    // altrimenti su tablet intercetta il tocco e non si può né scrivere né toccare la miniatura
-    h+='<div class="erow" data-id="'+cat.id+'" ondragover="dcOver(event)" ondrop="dcDrop(event,\''+cat.id+'\')">'
-      +'<span class="dh" draggable="true" ondragstart="dcStart(event,\''+cat.id+'\')">☰</span>'
-      +'<div class="cthumb" onclick="openImgSrc(\''+cat.id+'\',\'cat\')" title="Cambia immagine">'+th+'</div>'
-      +'<input type="text" value="'+esc(cat.name)+'" oninput="renameCat(\''+cat.id+'\',this.value)" style="min-width:0;flex:1 1 160px">'
-      +'<div class="ebtns">'
-        +'<button onclick="promptRenameCat(\''+cat.id+'\')" style="background:#e1f5ee;color:#0F6E56;border:none;border-radius:10px;padding:10px 14px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap">✏️ Rinomina</button>'
-        +'<button onclick="delCat(\''+cat.id+'\')" style="background:#fdecea;color:#E24B4A;border:none;border-radius:10px;padding:10px 14px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap">🗑 Elimina</button>'
+    var n=D.cards.filter(function(c){return c.c===cat.id;}).length;
+    var img=cat.img
+      ?'<img src="'+cat.img+'" style="width:110px;height:110px;object-fit:cover;border-radius:14px;background:#f0f0ee">'
+      :'<div style="width:110px;height:110px;border-radius:14px;background:#eef2f0;border:2px dashed #c5d5cd;display:flex;align-items:center;justify-content:center;color:#9ab5a9;font-size:36px;font-weight:800">'+esc((cat.name||"?").charAt(0).toUpperCase())+'</div>';
+    h+='<div style="background:#f8f8f6;border:2px solid #e0e0de;border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:8px">'
+      +'<div onclick="openImgSrc(\''+cat.id+'\',\'cat\')" style="cursor:pointer" title="Cambia immagine">'+img+'</div>'
+      +'<div style="font-size:15px;font-weight:800;color:#222;text-align:center;line-height:1.2;min-height:36px;display:flex;align-items:center">'+esc(cat.name)+'</div>'
+      +'<div style="font-size:12px;color:#888">'+n+' scheda/e</div>'
+      +'<div style="display:flex;gap:6px;width:100%">'
+        +'<button onclick="promptRenameCat(\''+cat.id+'\')" style="flex:1;background:#e1f5ee;color:#0F6E56;border:none;border-radius:10px;padding:9px 6px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit">✏️ Rinomina</button>'
+        +'<button onclick="delCat(\''+cat.id+'\')" style="flex:1;background:#fdecea;color:#E24B4A;border:none;border-radius:10px;padding:9px 6px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit">🗑 Elimina</button>'
       +'</div>'
       +'</div>';
   });
-  document.getElementById("ecats").innerHTML=h;
+  h+='</div>';
+  el.innerHTML=h;
 }
 
 var dcId=null;

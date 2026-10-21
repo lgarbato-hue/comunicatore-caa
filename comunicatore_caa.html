@@ -171,6 +171,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="bico" onclick="showPinChange()" style="border:1px solid #ddd;border-radius:8px;padding:6px 10px;font-size:13px;background:#f8f8f8">🔑 PIN</button>
   </div>
   <div id="editBody">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button onclick="exportData()" style="flex:1 1 200px;background:#2d6cdf;color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit">💾 Salva backup su file</button>
+      <button onclick="importData()" style="flex:1 1 200px;background:#f0f0ee;color:#333;border:1.5px solid #ccc;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit">📂 Ripristina backup</button>
+    </div>
     <button class="badd" onclick="addCat()" style="font-size:18px;padding:18px;background:#1D9E75;color:#fff;border-radius:12px">+ Aggiungi cartella</button>
     <div style="background:#fff;border-radius:14px;border:2px solid #1D9E75;padding:14px">
       <h2 style="font-size:16px;font-weight:800;color:#0F6E56;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:.05em">🗂 Le tue cartelle</h2>
@@ -181,6 +185,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="ecards"></div>
     </div>
   </div>
+
+<input type="file" id="inpBak" class="hidden" accept=".json,application/json">
 </div>
 
 <div id="pinModal">
@@ -851,6 +857,47 @@ function startRec(id){
     toast("🔴 Registrazione... tocca Ferma per finire");
   }).catch(function(){alert("Impossibile accedere al microfono.");});
 }
+
+// ── BACKUP / RIPRISTINO ───────────────────────────────────
+// Esporta tutto (cartelle, schede, immagini e audio registrati) in un file JSON
+function exportData(){
+  try{
+    var payload={ver:1, saved:new Date().toISOString(), data:D};
+    var blob=new Blob([JSON.stringify(payload)],{type:"application/json"});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");
+    var t=new Date();
+    var pad=function(n){return (n<10?"0":"")+n;};
+    var name="comunicatore-caa_"+t.getFullYear()+pad(t.getMonth()+1)+pad(t.getDate())+"_"+pad(t.getHours())+pad(t.getMinutes())+".json";
+    a.href=url; a.download=name; document.body.appendChild(a); a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},300);
+    toast("Backup salvato: "+name);
+  }catch(e){alert("Errore nel backup: "+e.message);}
+}
+
+function importData(){
+  document.getElementById("inpBak").value="";
+  document.getElementById("inpBak").click();
+}
+document.getElementById("inpBak").onchange=function(){
+  var f=this.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(e){
+    try{
+      var obj=JSON.parse(e.target.result);
+      var incoming=obj&&obj.data?obj.data:obj;
+      if(!incoming||!incoming.cats||!incoming.cards){
+        alert("File non valido: non sembra un backup del comunicatore."); return;
+      }
+      if(!confirm("Ripristinare il backup?\n\nLe cartelle e schede attuali sul tablet verranno SOSTITUITE con quelle del backup.\n\nContinuare?"))return;
+      D=incoming;
+      if(!D.pin)D.pin="1234";
+      save(); renderECats(); renderECards(); refreshView();
+      toast("Backup ripristinato!");
+    }catch(err){alert("Errore nel ripristino: "+err.message);}
+  };
+  r.readAsText(f);
+};
 
 // ── UTILS ─────────────────────────────────────────────────
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}

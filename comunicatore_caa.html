@@ -39,24 +39,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 #folderHdr .back:active{background:#c8eede}
 #folderHdr .title{flex:1;font-size:16px;font-weight:700;color:#222}
 
-/* grid (folders or cards) */
-#grid-wrap{flex:1;overflow-y:auto;padding:12px}
-#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
-.card{background:#fff;border:2px solid #e0e0de;border-radius:14px;padding:14px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:transform .1s;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.card:active{transform:scale(0.88);border-color:#1D9E75}
-.card img{width:72px;height:72px;object-fit:cover;border-radius:10px}
-.card .cl{font-size:13px;font-weight:700;text-align:center;line-height:1.3;word-break:break-word;color:#222}
+/* grid (folders or cards) — icone grandi per bambini con autismo */
+#grid-wrap{flex:1;overflow-y:auto;padding:16px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.card{background:#fff;border:3px solid #e0e0de;border-radius:18px;padding:18px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform .1s;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.card:active{transform:scale(0.92);border-color:#1D9E75}
+.card img{width:120px;height:120px;object-fit:cover;border-radius:14px}
+.card .cl{font-size:17px;font-weight:800;text-align:center;line-height:1.25;word-break:break-word;color:#222}
 
-/* folder tiles — bigger, visually distinct */
-.folder{background:#fff;border:2px solid #e0e0de;border-radius:16px;padding:18px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:transform .1s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+/* folder tiles — ancora più grandi */
+.folder{background:#fff;border:3px solid #e0e0de;border-radius:20px;padding:22px 12px 18px;display:flex;flex-direction:column;align-items:center;gap:14px;cursor:pointer;transition:transform .1s;box-shadow:0 3px 12px rgba(0,0,0,.1)}
 .folder:active{transform:scale(0.93);border-color:#1D9E75}
-.ficon{width:84px;height:68px;position:relative;flex-shrink:0}
-.ficon .tab{position:absolute;left:6px;top:0;width:38px;height:14px;background:#1D9E75;border-radius:6px 6px 0 0}
-.ficon .body{position:absolute;left:0;top:10px;right:0;bottom:0;background:#1D9E75;border-radius:4px 10px 10px 10px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.08)}
-.ficon .count{position:absolute;right:6px;bottom:6px;background:rgba(255,255,255,.92);color:#0F6E56;font-size:12px;font-weight:800;padding:2px 7px;border-radius:999px;line-height:1}
-.folder .fname{font-size:15px;font-weight:800;text-align:center;line-height:1.25;color:#222;word-break:break-word}
-.folder .fimg{width:84px;height:84px;object-fit:cover;border-radius:14px;background:#f0f0ee}
-.folder .fcount{position:absolute;right:-4px;top:-4px;background:#1D9E75;color:#fff;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;line-height:1;border:2px solid #fff}
+.ficon{width:130px;height:106px;position:relative;flex-shrink:0}
+.ficon .tab{position:absolute;left:10px;top:0;width:58px;height:20px;background:#1D9E75;border-radius:8px 8px 0 0}
+.ficon .body{position:absolute;left:0;top:16px;right:0;bottom:0;background:#1D9E75;border-radius:6px 14px 14px 14px;box-shadow:inset 0 -5px 0 rgba(0,0,0,.08)}
+.ficon .count{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.95);color:#0F6E56;font-size:16px;font-weight:800;padding:4px 11px;border-radius:999px;line-height:1}
+.folder .fname{font-size:19px;font-weight:800;text-align:center;line-height:1.25;color:#222;word-break:break-word}
+.folder .fimg{width:130px;height:130px;object-fit:cover;border-radius:18px;background:#f0f0ee}
+.folder .fcount{position:absolute;right:-6px;top:-6px;background:#1D9E75;color:#fff;font-size:15px;font-weight:800;padding:4px 10px;border-radius:999px;line-height:1;border:3px solid #fff}
 .folder .fwrap{position:relative;display:inline-block}
 
 /* edit screen */
@@ -498,8 +498,8 @@ function renderECats(){
       +'<span class="dh" draggable="true" ondragstart="dcStart(event,\''+cat.id+'\')">☰</span>'
       +'<div class="cthumb" onclick="openImgSrc(\''+cat.id+'\',\'cat\')" title="Cambia immagine">'+th+'</div>'
       +'<input type="text" value="'+esc(cat.name)+'" oninput="renameCat(\''+cat.id+'\',this.value)">'
-      +'<button class="bico" onclick="promptRenameCat(\''+cat.id+'\')" title="Rinomina" style="color:#1D9E75">✏️</button>'
-      +'<button class="bico del" onclick="delCat(\''+cat.id+'\')">🗑</button>'
+      +'<button onclick="promptRenameCat(\''+cat.id+'\')" title="Rinomina" style="background:#e1f5ee;color:#0F6E56;border:none;border-radius:8px;padding:8px 12px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">✏️ Rinomina</button>'
+      +'<button onclick="delCat(\''+cat.id+'\')" title="Elimina cartella" style="background:#fdecea;color:#E24B4A;border:none;border-radius:8px;padding:8px 12px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">🗑 Elimina</button>'
       +'</div>';
   });
   document.getElementById("ecats").innerHTML=h;
@@ -542,11 +542,16 @@ function addCat(){
   setTimeout(function(){ openImgSrc(id,"cat"); }, 300);
 }
 function delCat(id){
+  var cat=D.cats.find(function(c){return c.id===id;});
+  if(!cat)return;
   var n=D.cards.filter(function(c){return c.c===id}).length;
-  if(n>0&&!confirm("Questa cartella ha "+n+" schede. Le schede verranno spostate in Senza cartella. Continuare?"))return;
-  D.cards.filter(function(c){return c.c===id}).forEach(function(c){c.c="__none__";});
-  D.cats=D.cats.filter(function(c){return c.id!==id});
-  save(); renderECats(); renderECards(); toast("Cartella eliminata");
+  var msg='Eliminare la cartella "'+cat.name+'"?';
+  if(n>0) msg+="\n\nContiene "+n+" scheda/e che verranno eliminate insieme alla cartella.";
+  if(!confirm(msg))return;
+  // elimina anche le schede dentro
+  D.cards=D.cards.filter(function(c){return c.c!==id;});
+  D.cats=D.cats.filter(function(c){return c.id!==id;});
+  save(); renderECats(); renderECards(); refreshView(); toast("Cartella eliminata");
 }
 
 function renderECards(){

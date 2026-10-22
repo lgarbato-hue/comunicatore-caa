@@ -920,6 +920,13 @@ renderHome();
 autoFillPictos();
 </script>
 <script>
+// registra il Service Worker per il funzionamento offline (serve HTTPS, github.io è ok)
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js").catch(function(e){console.warn("SW:",e);});
+  });
+}
+
 // blocco uscita accidentale
 history.pushState(null,null,location.href);
 window.onpopstate=function(){history.pushState(null,null,location.href);};
